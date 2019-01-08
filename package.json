@@ -1,6 +1,6 @@
 {
   "name": "errorlings",
-  "version": "0.0.0-dev",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "",
   "main": "src/index.ts",
