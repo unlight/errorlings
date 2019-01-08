@@ -1,3 +1,4 @@
+/* eslint-disable tslint/config */
 import { ExceptionError } from './exception-error';
 import { ForbiddenError } from './forbidden-error';
 import { NotFoundError } from './notfound-error';

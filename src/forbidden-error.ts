@@ -1,5 +1,10 @@
 import { CustomError, CustomErrorOptions } from './custom-error';
 
+/**
+ * Forbidden error, defaults:
+ * status: 403
+ * message: You don't have permission to do that.
+ */
 export class ForbiddenError extends CustomError {
 
     constructor(resource: string);
@@ -10,11 +15,11 @@ export class ForbiddenError extends CustomError {
             const [resource] = args;
             data = { resource };
         }
-        args.unshift({
+        args.unshift(<CustomErrorOptions>{
             data,
             status: 403,
             message: `You don't have permission to do that.`,
-        } as CustomErrorOptions);
-        super(...args as []);
+        });
+        super(...args);
     }
 }

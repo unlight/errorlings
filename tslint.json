@@ -34,6 +34,8 @@
     "interface-name": false,
     "ban-types": false,
     "no-relative-imports": false,
-    "missing-jsdoc": false
+    "missing-jsdoc": false,
+    "export-name": false,
+    "no-any": false
   }
 }

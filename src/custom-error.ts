@@ -1,5 +1,8 @@
 export type CustomErrorOptions = { [K in Exclude<keyof CustomError, 'stack' | 'name'>]?: CustomError[K] };
 
+/**
+ * Base class for custom errors
+ */
 export class CustomError extends Error {
 
     readonly status: number;
@@ -9,7 +12,7 @@ export class CustomError extends Error {
 
     constructor(options: CustomErrorOptions);
     constructor(...args: any[]);
-    constructor(...args: any[]) {
+    constructor(...args: any[]) { // tslint:disable-line:cognitive-complexity
         let message: string | undefined;
         let status: number = 0;
         let data: any;
@@ -17,26 +20,20 @@ export class CustomError extends Error {
         let inner: Error | undefined;
         for (const arg of args) {
             const typeofArg = typeof arg;
-            switch (true) {
-                case message !== undefined && typeofArg === 'string': {
-                    code = arg;
-                } break;
-                case typeofArg === 'string': {
-                    message = arg;
-                } break;
-                case typeofArg === 'number': {
-                    status = arg;
-                } break;
-                case arg instanceof Error: {
-                    inner = arg;
-                } break;
-                case typeofArg === 'object': {
-                    if ('status' in arg) { status = arg.status; }
-                    if ('message' in arg) { message = arg.message; }
-                    if ('data' in arg) { data = arg.data; }
-                    if ('code' in arg) { code = arg.code; }
-                    if ('inner' in arg) { inner = arg.inner; }
-                } break;
+            if (message !== undefined && typeofArg === 'string') {
+                code = arg;
+            } else if (typeofArg === 'string') {
+                message = arg;
+            } else if (typeofArg === 'number') {
+                status = arg;
+            } else if (arg instanceof Error) {
+                inner = arg;
+            } else if (typeofArg === 'object') {
+                if ('status' in arg) { status = arg.status; }
+                if ('message' in arg) { message = arg.message; }
+                if ('data' in arg) { data = arg.data; }
+                if ('code' in arg) { code = arg.code; }
+                if ('inner' in arg) { inner = arg.inner; }
             }
         }
         super(message);
