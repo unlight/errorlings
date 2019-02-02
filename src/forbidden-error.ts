@@ -15,11 +15,12 @@ export class ForbiddenError extends CustomError {
             const [resource] = args;
             data = { resource };
         }
-        args.unshift(<CustomErrorOptions>{
+        const customErrorOption: CustomErrorOptions = {
             data,
             status: 403,
             message: `You don't have permission to do that.`,
-        });
+        };
+        args.unshift(customErrorOption);
         super(...args);
     }
 }

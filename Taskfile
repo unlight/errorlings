@@ -29,7 +29,7 @@ function watch_cmd {
             echo 'inotifywait'
         ;;
         Msys)
-            echo 'inotifywait-win32'
+            echo 'inotifywait-win32.cmd'
         ;;
         *)
             echo 'inotifywait'
