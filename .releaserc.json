@@ -1,28 +1,15 @@
 {
-  "generateNotes": {
-    "writerOpts": {
-      "__keep": "me"
-    }
-  },
-  "verifyConditions": [
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
+    [
+      "@semantic-release/npm",
+      {
+        "pkgRoot": "dist"
+      }
+    ],
     "@semantic-release/github",
-    "@semantic-release/npm",
     "@semantic-release/git"
-  ],
-  "prepare": [
-    "@semantic-release/changelog",
-    "@semantic-release/npm",
-    "@semantic-release/git"
-  ],
-  "publish": [
-    "@semantic-release/npm",
-    "@semantic-release/github"
-  ],
-  "success": [
-    "@semantic-release/github"
-  ],
-  "fail": [
-    "@semantic-release/github"
   ]
 }
